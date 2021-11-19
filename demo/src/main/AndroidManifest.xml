@@ -3,6 +3,7 @@
     package="com.goharsha.androild.demo">
 
     <application
+        android:name=".DemoApplication"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
