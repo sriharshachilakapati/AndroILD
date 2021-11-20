@@ -1,9 +1,0 @@
-plugins {
-    id 'java-library'
-    id 'kotlin'
-}
-
-java {
-    sourceCompatibility GradleConfig.sourceCompatibility
-    targetCompatibility GradleConfig.targetCompatibility
-}

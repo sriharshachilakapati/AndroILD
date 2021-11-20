@@ -6,6 +6,6 @@ import com.goharsha.androild.core.AndroILD
 class DemoApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        AndroILD.initialize()
+        AndroILD.initialize(this)
     }
 }

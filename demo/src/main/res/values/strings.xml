@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AndroILD</string>
+    <string name="local_image_view">Local Image View</string>
+    <string name="remote_imageview">Remote ImageView</string>
 </resources>

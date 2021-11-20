@@ -3,7 +3,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 
@@ -13,5 +12,3 @@ include ':core'
 include ':backend-glide'
 include ':backend-picasso'
 include ':backend-fresco'
-include ':core-api'
-include ':backend-none'
