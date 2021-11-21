@@ -30,6 +30,10 @@ android {
         backendPicasso {
             dimension 'androild-backend'
         }
+
+        backendCoil {
+            dimension 'androild-backend'
+        }
     }
 
     buildFeatures {
@@ -62,4 +66,5 @@ dependencies {
     backendFrescoImplementation project(":backend-fresco")
     backendGlideImplementation project(":backend-glide")
     backendPicassoImplementation project(":backend-picasso")
+    backendCoilImplementation project(":backend-coil")
 }
