@@ -19,5 +19,10 @@ class MainActivity : AppCompatActivity() {
         AndroILD.newRequest()
             .load("https://github.com/sriharshachilakapati/AndroILD/raw/main/AndroILD.png")
             .into(binding.remoteImageView)
+
+        AndroILD.newRequest()
+            .load("https://github.com/sriharshachilakapati/AndroILD/raw/main/AndroILD.png")
+            .resize(300, 300)
+            .into(binding.resizedRemoteImageView)
     }
 }

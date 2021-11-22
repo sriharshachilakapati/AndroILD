@@ -9,9 +9,10 @@ import com.facebook.drawee.drawable.ScalingUtils
 import com.facebook.drawee.generic.GenericDraweeHierarchyBuilder
 import com.facebook.drawee.interfaces.DraweeHierarchy
 import com.facebook.drawee.view.DraweeHolder
+import com.facebook.imagepipeline.common.ResizeOptions
 import com.facebook.imagepipeline.request.ImageRequestBuilder
 import com.goharsha.androild.core.DrawableImageSource
-import com.goharsha.androild.core.ImageSource
+import com.goharsha.androild.core.ImageRequest
 import com.goharsha.androild.core.UrlImageSource
 import java.util.*
 
@@ -35,13 +36,23 @@ class FrescoImageViewManager(private val imageView: ImageView) : View.OnAttachSt
         draweeHolder = DraweeHolder.create(null, imageView.context)
     }
 
-    fun setImageSource(source: ImageSource) {
+    fun setImageRequest(request: ImageRequest) {
+        val source =
+            request.imageSource ?: throw IllegalStateException("ImageSource must be defined")
+
         val requestBuilder = when (source) {
             is DrawableImageSource -> ImageRequestBuilder.newBuilderWithResourceId(source.res)
             is UrlImageSource -> ImageRequestBuilder.newBuilderWithSource(Uri.parse(source.url))
         }
 
-        val imageRequest = requestBuilder.build()
+        val imageRequest = requestBuilder.run {
+            if (request.width != ImageRequest.ORIGINAL_SIZE && request.height != ImageRequest.ORIGINAL_SIZE) {
+                resizeOptions = ResizeOptions.forDimensions(request.width, request.height)
+            }
+
+            build()
+        }
+
         val draweeHierarchy = GenericDraweeHierarchyBuilder(imageView.resources)
             .setActualImageScaleType(ImageScaleMap.getOrElse(imageView.scaleType) { ScalingUtils.ScaleType.FIT_CENTER })
             .build()

@@ -9,5 +9,5 @@ object AndroILD : AndroILDInterface<RequestBuilder> {
     override fun initialize(context: Context) {
     }
 
-    override fun newRequest(): RequestBuilder = RequestBuilder(null, CoilImageLoader)
+    override fun newRequest(): RequestBuilder = RequestBuilder(CoilImageLoader)
 }

@@ -50,6 +50,8 @@ class FrescoControllerListener(
 
                 widthExceedsParent -> resizeImageView(matchParent, viewHeight)
                 heightExceedsParent -> resizeImageView(viewWidth, matchParent)
+
+                else -> resizeImageView(viewWidth, viewHeight)
             }
         }
 

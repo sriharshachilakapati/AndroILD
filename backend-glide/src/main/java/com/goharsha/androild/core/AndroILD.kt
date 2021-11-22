@@ -9,5 +9,5 @@ object AndroILD : AndroILDInterface<RequestBuilder> {
     override fun initialize(context: Context) {
     }
 
-    override fun newRequest(): RequestBuilder = RequestBuilder(null, GlideImageLoader)
+    override fun newRequest(): RequestBuilder = RequestBuilder(GlideImageLoader)
 }

@@ -4,18 +4,23 @@ import android.widget.ImageView
 import androidx.annotation.DrawableRes
 
 class RequestBuilder(
-    private val source: ImageSource? = null,
-    private val imageLoader: ImageLoader<ImageSource, ImageTarget>? = null
+    private val imageLoader: ImageLoader<ImageRequest, ImageTarget>,
+    private val imageRequest: ImageRequest = ImageRequest()
 ) {
-    fun load(url: String) = RequestBuilder(UrlImageSource(url), imageLoader)
+    fun load(url: String) =
+        RequestBuilder(imageLoader, imageRequest.copy(imageSource = UrlImageSource(url)))
 
-    fun load(@DrawableRes drawableRes: Int) =
-        RequestBuilder(DrawableImageSource(drawableRes), imageLoader)
+    fun load(@DrawableRes drawableRes: Int) = RequestBuilder(
+        imageLoader,
+        imageRequest.copy(imageSource = DrawableImageSource(drawableRes))
+    )
+
+    fun resize(width: Int, height: Int) = RequestBuilder(
+        imageLoader,
+        imageRequest.copy(width = width, height = height)
+    )
 
     fun into(imageView: ImageView) {
-        imageLoader ?: throw IllegalStateException("ImageLoader not defined")
-        source ?: throw java.lang.IllegalStateException("Image Source not defined")
-
-        imageLoader.loadInto(source, ImageViewTarget(imageView))
+        imageLoader.loadInto(imageRequest, ImageViewTarget(imageView))
     }
 }

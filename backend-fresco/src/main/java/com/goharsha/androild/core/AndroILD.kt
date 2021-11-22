@@ -11,5 +11,5 @@ object AndroILD: AndroILDInterface<RequestBuilder> {
         Fresco.initialize(context)
     }
 
-    override fun newRequest(): RequestBuilder = RequestBuilder(null, FrescoImageLoader)
+    override fun newRequest(): RequestBuilder = RequestBuilder(FrescoImageLoader)
 }
